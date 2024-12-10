@@ -146,7 +146,7 @@ void inner_run(bf16 *d_A, bf16 *d_B, bf16 *d_C, size_t M, size_t N, size_t K, di
     using c_layout = typename mmt::layout::c_layout;
     using globals  = typename mmt::layout::globals;
     a_layout Ag{d_A, nullptr, nullptr, M, K};
-    b_layout Bg{d_B, nullptr, nullptr, N, K};
+    b_layout Bg{d_B, nullptr, nullptr, K, N};
     c_layout Cg{d_C, nullptr, nullptr, M, N};
     globals G{Ag, Bg, Cg};
     prototype::lcf::kernel<mmt><<<grid, block, MAX_SHARED_MEMORY-1024>>>(G);
