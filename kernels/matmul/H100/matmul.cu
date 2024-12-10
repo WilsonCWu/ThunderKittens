@@ -1,3 +1,18 @@
+
+#include <cstring>
+namespace std {
+    // Our version of nvcc doesn't have std::bit_cast?!?!
+    template <class T2, class T1> constexpr T2 bit_cast(T1 t1) {
+        static_assert(sizeof(T1) == sizeof(T2));
+        static_assert(std::is_standard_layout<T1>() && std::is_trivial<T1>());
+        static_assert(std::is_standard_layout<T2>() && std::is_trivial<T2>());
+    
+        T2 t2;
+        std::memcpy(std::addressof(t2), std::addressof(t1), sizeof(T1));
+        return t2;
+    }
+} // namespace std
+
 #include "kittens.cuh"
 #include "prototype.cuh"
 
