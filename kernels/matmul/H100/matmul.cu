@@ -313,6 +313,9 @@ int main() {
     // and this is fine
     std::cout << "N=32, N_BLOCK=1" << std::endl;
     run_benchmark<matmul_template<Shape{.M=64,.N=32,.K=64},2,1,8>>(N, N, N);
+    // and this is fine
+    std::cout << "N=64, N_BLOCK=2" << std::endl;
+    run_benchmark<matmul_template<Shape{.M=64,.N=64,.K=64},2,2,8>>(N, N, N);
     // N = 3072;
     // run_benchmark<matmul_template<2,4,8>>(N, N, N);
     // run_benchmark<matmul_template<3,3,8>>(N, N, N);
